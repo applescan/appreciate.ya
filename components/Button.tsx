@@ -26,26 +26,24 @@ const Button = ({
   const getVariant = () => {
     switch (variant) {
       case "primary":
-        return "bg-violet-500 hover:bg-violet-700 text-white";
+        return "bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] text-white shadow-lg hover:-translate-y-0.5 hover:shadow-xl";
       case "danger":
-        return "bg-red-500 hover:bg-red-700 text-white ";
+        return "bg-red-500 hover:bg-red-600 text-white";
       case "success":
-        return "bg-green-500 hover:bg-green-700 text-white ";
+        return "bg-emerald-500 hover:bg-emerald-600 text-white";
       case "warning":
-        return "bg-amber-500 hover:bg-amber-700 text-white ";
+        return "bg-amber-500 hover:bg-amber-600 text-white";
       case "outline-danger":
-        return "bg-white text-red-500 border border-red-500 hover:text-white hover:bg-red-700  ";
-      case "outline-danger":
-        return "bg-white text-red-500 border border-red-500 hover:text-white hover:bg-red-700  ";
+        return "bg-white/90 text-red-600 border border-red-200 hover:text-white hover:bg-red-600";
       case "outline-success":
-        return "bg-white text-green-500 border border-green-500 hover:text-white hover:bg-green-700  ";
+        return "bg-white/90 text-emerald-600 border border-emerald-200 hover:text-white hover:bg-emerald-600";
       case "outline-warning":
-        return "bg-white text-amber-400 border border-amber-500 hover:text-white hover:bg-amber-500  ";
+        return "bg-white/90 text-amber-600 border border-amber-200 hover:text-white hover:bg-amber-500";
       case "outline-primary":
-        return "bg-white text-violet-500 border border-violet-500 hover:text-white hover:bg-violet-700  ";
+        return "bg-white/90 text-[var(--color-fg)] border border-[var(--color-border)] hover:text-[var(--color-fg)] hover:bg-white";
 
       default:
-        return "bg-violet-500 hover:bg-violet-700 hover:bg-gra text-white shadow shadow-violet-600/25 hover:shadow-violet-600/75";
+        return "bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] text-white shadow-lg hover:-translate-y-0.5 hover:shadow-xl";
     }
   };
   return (
@@ -54,9 +52,9 @@ const Button = ({
       type={type}
       className={`
  
-        ${getVariant()}  transition duration-500  ${
+        ${getVariant()} transition-all duration-300 ${
           !paddingLess && "py-2 px-4"
-        }  ${!square && "rounded-md"} active:scale-95 ${className} `}
+        } ${!square && "rounded-full"} active:scale-95 ${className} `}
     >
       {children}
     </button>

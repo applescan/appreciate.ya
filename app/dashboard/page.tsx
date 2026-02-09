@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_POSTS_BY_ORG } from "@/graphql/queries";
 import PostCard from "@/components/ui/PostCard";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/Button";
 import { RiHeartAddLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { Post } from "@/lib/types/types";
@@ -140,9 +140,9 @@ const UserPostPage = () => {
 
   return (
     <>
-      <div className="pb-5 flex flex-col md:flex-row justify-between">
+      <div className="pb-5 flex flex-col md:flex-row justify-between gap-4">
         <Button
-          className="mb-4 md:mb-0 p-2 rounded-md text-sm border bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-400 hover:to-indigo-400 text-white"
+          className="md:mb-0 text-sm"
           onClick={ () => router.push("/add") }
         >
           <div className="flex items-center gap-2">
@@ -151,7 +151,7 @@ const UserPostPage = () => {
           </div>
         </Button>
         <div className="flex items-center gap-2">
-          <span className="text-gray-500 font-normal text-sm min-w-[55px]">
+          <span className="text-[var(--color-muted)] font-medium text-sm min-w-[55px]">
             Filter by
           </span>
           <div className="w-[150px]">
@@ -163,39 +163,45 @@ const UserPostPage = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <Card className="flex items-center gap-2 justify-center border-0 px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Card className="flex items-center gap-4 justify-center px-4">
           <ThankYouChart
             thankYous={ totalThanksCards }
             totalPost={ data?.postsByOrganizationId?.length || 0 }
           />
           <div className="flex gap-4 flex-col">
-            <h2 className="text-xl font-bold text-gray-800">Thank yous</h2>
-            <p className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+            <h2 className="text-lg font-semibold text-[var(--color-fg)]">
+              Thank yous
+            </h2>
+            <p className="text-4xl font-semibold text-[var(--color-fg)]">
               { totalThanksCards }/{ data?.postsByOrganizationId?.length || 0 }
             </p>
           </div>
         </Card>
-        <Card className="flex items-center gap-2 justify-center border-0 px-4">
+        <Card className="flex items-center gap-4 justify-center px-4">
           <CoffeeChart
             coffees={ totalCoffeeCards }
             totalPost={ data?.postsByOrganizationId?.length || 0 }
           />
           <div className="flex gap-4 flex-col">
-            <h2 className="text-xl font-bold text-gray-800">Coffees</h2>
-            <p className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+            <h2 className="text-lg font-semibold text-[var(--color-fg)]">
+              Coffees
+            </h2>
+            <p className="text-4xl font-semibold text-[var(--color-fg)]">
               { totalCoffeeCards }/{ data?.postsByOrganizationId?.length || 0 }
             </p>
           </div>
         </Card>
-        <Card className="flex items-center gap-2 justify-center border-0 px-4">
+        <Card className="flex items-center gap-4 justify-center px-4">
           <GiftCharts
             gifts={ totalGiftCards }
             totalPost={ data?.postsByOrganizationId?.length || 0 }
           />
           <div className="flex gap-4 flex-col">
-            <h2 className="text-xl font-bold text-gray-800">Vouchers</h2>
-            <p className="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+            <h2 className="text-lg font-semibold text-[var(--color-fg)]">
+              Vouchers
+            </h2>
+            <p className="text-4xl font-semibold text-[var(--color-fg)]">
               { totalGiftCards }/{ data?.postsByOrganizationId?.length || 0 }
             </p>
           </div>
@@ -223,8 +229,8 @@ const UserPostPage = () => {
 
       { data?.postsByOrganizationId?.length === 0 && (
         <div className="flex justify-center w-full py-10 h-56 my-auto item">
-          <p className="font-semibold text-gray-400 flex justify-center items-center">
-            It's empty in here, let's start posting!
+          <p className="font-semibold text-[var(--color-muted)] flex justify-center items-center">
+            It&apos;s empty in here, let&apos;s start posting!
           </p>
         </div>
       ) }

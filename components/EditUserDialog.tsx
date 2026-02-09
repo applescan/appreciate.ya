@@ -100,13 +100,15 @@ const EditUserDialog: React.FC<EditUserDialogProps> = ({
           >
             {/* Name field */}
             <div className="mt-4">
-              <label htmlFor="editName">Name</label>
+              <label htmlFor="editName" className="text-sm font-semibold">
+                Name
+              </label>
               <Input
                 type="text"
                 id="editName"
                 name="name"
                 placeholder="Type.."
-                className="w-full p-2 mt-2 border rounded"
+                className="mt-2 w-full"
                 value={editUserData.name}
                 onChange={(event) => {
                   const { name, value } = event.target;
@@ -117,13 +119,15 @@ const EditUserDialog: React.FC<EditUserDialogProps> = ({
 
             {/* Email field */}
             <div className="mt-4">
-              <label htmlFor="editEmail">Email</label>
+              <label htmlFor="editEmail" className="text-sm font-semibold">
+                Email
+              </label>
               <Input
                 type="email"
                 id="editEmail"
                 name="email"
                 placeholder="Type.."
-                className="w-full p-2 mt-2 border rounded"
+                className="mt-2 w-full"
                 value={editUserData.email}
                 onChange={(event) => {
                   const { name, value } = event.target;
@@ -134,7 +138,9 @@ const EditUserDialog: React.FC<EditUserDialogProps> = ({
 
             {/* Role Dropdown */}
             <div className="mt-4 flex-col">
-              <label htmlFor="editRole">Role</label>
+              <label htmlFor="editRole" className="text-sm font-semibold">
+                Role
+              </label>
               <Select
                 value={editUserData.role}
                 onValueChange={(role) =>
@@ -156,7 +162,9 @@ const EditUserDialog: React.FC<EditUserDialogProps> = ({
 
             {/* Organization Dropdown */}
             <div className="mt-4 flex-col">
-              <label htmlFor="editOrgId">Organization</label>
+              <label htmlFor="editOrgId" className="text-sm font-semibold">
+                Organization
+              </label>
               <Select
                 value={editUserData.orgId?.toString() || ""}
                 onValueChange={(orgId) =>

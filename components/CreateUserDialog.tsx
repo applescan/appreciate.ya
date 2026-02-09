@@ -88,7 +88,7 @@ const CreateUserDialog: React.FC<CreateUserDialogProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogTrigger>
-        <div className="p-2 rounded-md text-sm border bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-400 hover:to-indigo-400 text-white">
+        <div className="rounded-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] px-4 py-2 text-sm font-semibold text-white shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition">
           {" "}
           <div className="flex items-center gap-2">
             <BiSolidMessageSquareAdd /> Create new user
@@ -101,39 +101,45 @@ const CreateUserDialog: React.FC<CreateUserDialogProps> = ({
           <DialogDescription>
             <form onSubmit={handleCreateUserSubmit}>
               <div className="mt-4">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" className="text-sm font-semibold">
+                  Email
+                </label>
                 <Input
                   type="email"
                   id="email"
                   name="email"
                   placeholder="Type.."
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={createUserData.email}
                   onChange={handleCreateUserInputChange}
                   required
                 />
               </div>
               <div className="mt-4">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password" className="text-sm font-semibold">
+                  Password
+                </label>
                 <Input
                   type="password"
                   id="password"
                   name="password"
                   placeholder="Type.."
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={createUserData.password}
                   onChange={handleCreateUserInputChange}
                   required
                 />
               </div>
               <div className="mt-4">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name" className="text-sm font-semibold">
+                  Name
+                </label>
                 <Input
                   type="text"
                   id="name"
                   name="name"
                   placeholder="Type.."
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={createUserData.name}
                   onChange={handleCreateUserInputChange}
                   required
@@ -141,7 +147,9 @@ const CreateUserDialog: React.FC<CreateUserDialogProps> = ({
               </div>
 
               <div className="mt-4 flex flex-col">
-                <label htmlFor="role">Role</label>
+                <label htmlFor="role" className="text-sm font-semibold">
+                  Role
+                </label>
                 <Select
                   value={selectedRole || ""}
                   onValueChange={(role) => setSelectedRole(role as UserRole)}
@@ -163,7 +171,9 @@ const CreateUserDialog: React.FC<CreateUserDialogProps> = ({
               </div>
 
               <div className="mt-4 flex flex-col">
-                <label htmlFor="orgId">Organization</label>
+                <label htmlFor="orgId" className="text-sm font-semibold">
+                  Organization
+                </label>
                 <Select
                   value={selectedOrg?.toString() || ""}
                   onValueChange={(orgId) => handleOrgSelect(Number(orgId))}

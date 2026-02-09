@@ -71,12 +71,14 @@ const EditPostDialog: React.FC<EditUserDialogProps> = ({
               src={selectedImage}
               height={100}
               width={200}
-              className="object-cover w-full mb-4 bg-gray-500"
+              className="object-cover w-full mb-4 rounded-2xl bg-slate-200"
             />
 
             {/* Name field */}
             <div className="mt-4">
-              <label htmlFor="editPost">Message</label>
+              <label htmlFor="editPost" className="text-sm font-semibold">
+                Message
+              </label>
               <textarea
                 id="editPost"
                 value={editPostData.content}
@@ -84,7 +86,7 @@ const EditPostDialog: React.FC<EditUserDialogProps> = ({
                   const { value } = event.target;
                   setEditPostData((prev) => ({ ...prev, content: value }));
                 }}
-                className="mt-1 block w-full py-2 px-3 border border-purple-800/30 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-2 block w-full rounded-2xl border border-[var(--color-border)] bg-white/90 px-3 py-2 text-sm text-[var(--color-fg)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)]"
               />
             </div>
 

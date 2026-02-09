@@ -19,34 +19,36 @@ interface UserCardProps {
 const UserCard: React.FC<UserCardProps> = ({ user, onEditClick }) => {
   return (
     <Card className="mt-2 mb-4">
-      <div className="flex items-center">
-        <Avatar className="h-20 w-20 ml-5">
+      <div className="flex items-center gap-4 p-4">
+        <Avatar className="h-16 w-16">
           <AvatarImage src={user.image} />
           <AvatarFallback className="text-2xl">
             {user?.name ? getInitials(user.name) : "NA"}
           </AvatarFallback>
         </Avatar>
-        <CardHeader className="min-w-0">
-          <div className="flex gap-2">
-            <CardTitle>{capitalizeEachWord(user.name)}</CardTitle>
+        <CardHeader className="min-w-0 p-0">
+          <div className="flex items-center gap-2">
+            <CardTitle className="text-base">
+              {capitalizeEachWord(user.name)}
+            </CardTitle>
             <MdEdit
-              className="cursor-pointer text-gray-400"
+              className="cursor-pointer text-[var(--color-muted)]"
               onClick={() => onEditClick(user)}
             />
           </div>
-          <CardDescription className="space-y-1">
+          <CardDescription className="space-y-1 text-[var(--color-muted)]">
             <span className="text-xs flex gap-2 items-center">
-              <MdOutlineMailOutline className="text-gray-600" />
+              <MdOutlineMailOutline className="text-[var(--color-muted)]" />
               <span className="truncate max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
                 {user.email}
               </span>
             </span>
             <span className="text-xs flex gap-2 items-center">
-              <MdWorkOutline className="text-gray-600" />
+              <MdWorkOutline className="text-[var(--color-muted)]" />
               {capitalizeEachWord(user.role)}
             </span>
             <span className="text-xs flex gap-2 items-center">
-              <HiOutlineOfficeBuilding className="text-gray-600" />@
+              <HiOutlineOfficeBuilding className="text-[var(--color-muted)]" />@
               {capitalizeEachWord(user.organization.name)}
             </span>
           </CardDescription>

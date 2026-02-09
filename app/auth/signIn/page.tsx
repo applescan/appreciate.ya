@@ -45,97 +45,85 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="relative flex h-full">
-      <div
-        className="w-1/2 bg-no-repeat bg-cover bg-center relative"
-        style={{ backgroundImage: `url('/bg-3.jpg')` }}
-      ></div>
-      <div
-        className="w-1/2 bg-no-repeat bg-cover bg-center relative"
-        style={{ backgroundImage: `url('/bg-4.jpg')` }}
-      />
-
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex flex-col items-center justify-center h-full w-full min-w-[350px] mx-auto text-gray-600">
-          <div className="w-full bg-white rounded-xl shadow-xl p-8 space-y-2 md:space-y-2">
-            <div className="bg-purple-100 text-purple-900 border border-purple-300 rounded-lg px-6 py-4 text-sm text-center mb-6 shadow-sm">
-              <h3 className="text-md font-bold mb-1">
-                👉 Too lazy to sign up?
-              </h3>
-              <p className="text-sm">Use our test account:</p>
-              <p className="mt-2 font-mono text-base font-semibold text-purple-800">
-                test@gmail.com
-              </p>
-              <p className="text-sm mt-2 text-purple-800">
-                Password hint:
-                <span className="font-bold"> It's a number from 1 to 4</span> 😉
-              </p>
-            </div>
-            <h2 className="text-4xl font-extrabold text-center text-purple-900">
-              Login
-            </h2>
-
-            {formErrors.length > 0 && (
-              <ul className="list-disc list-inside text-sm font-normal text-red-500 py-4 grid grid-cols-2 gap-x-2 gap-y-1">
-                {formErrors.map((error, index) => (
-                  <li key={index}>{error}</li>
-                ))}
-              </ul>
-            )}
-
-            <form
-              className="space-y-2 md:space-y-4"
-              onSubmit={handleLoginSubmit}
-            >
-              <div>
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </label>
-                <Input
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="Enter Email..."
-                  className="w-full border rounded"
-                  value={loginData.username.toLowerCase()}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="text-sm font-medium">
-                  Password
-                </label>
-                <Input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Enter Password..."
-                  className="w-full border rounded"
-                  value={loginData.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className="mt-6 flex w-full items-center gap-2">
-                <Button
-                  type="submit"
-                  className="w-full text-center flex justify-center items-center"
-                >
-                  Let's go!
-                </Button>
-              </div>
-            </form>
-            <p className="font-normal text-center py-4 text-sm text-purple-900">
-              Don't have an account?{" "}
-              <span
-                className="underline font-bold text-sm text-purple-900 italic cursor-pointer"
-                onClick={() => router.push("/auth/signup")}
-              >
-                Sign up
-              </span>
-            </p>
-          </div>
+    <div className="mx-auto flex min-h-[80vh] max-w-6xl items-center justify-center px-6 py-12 lg:px-10">
+      <div className="glass-panel w-full max-w-xl rounded-[32px] p-8 shadow-2xl">
+        <div className="mb-6 rounded-2xl border border-[var(--color-border)] bg-white/80 px-5 py-4 text-center text-sm text-[var(--color-muted)]">
+          <h3 className="text-sm font-semibold text-[var(--color-fg)]">
+            Test account
+          </h3>
+          <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            Use this to explore
+          </p>
+          <p className="mt-3 font-mono text-base font-semibold text-[var(--color-fg)]">
+            test@gmail.com
+          </p>
+          <p className="mt-2 text-xs text-[var(--color-muted)]">
+            Password hint: a number from 1 to 4
+          </p>
         </div>
+        <h2 className="text-3xl font-semibold text-[var(--color-fg)]">
+          Welcome back
+        </h2>
+        <p className="mt-2 text-sm text-[var(--color-muted)]">
+          Sign in to continue celebrating your team.
+        </p>
+
+        {formErrors.length > 0 && (
+          <ul className="list-disc list-inside text-sm font-normal text-red-500 py-4 grid grid-cols-1 gap-y-1">
+            {formErrors.map((error, index) => (
+              <li key={index}>{error}</li>
+            ))}
+          </ul>
+        )}
+
+        <form className="mt-6 space-y-4" onSubmit={handleLoginSubmit}>
+          <div>
+            <label htmlFor="email" className="text-sm font-semibold">
+              Email
+            </label>
+            <Input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter Email..."
+              className="mt-2 w-full"
+              value={loginData.username.toLowerCase()}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="text-sm font-semibold">
+              Password
+            </label>
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter Password..."
+              className="mt-2 w-full"
+              value={loginData.password}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div className="mt-6 flex w-full items-center gap-2">
+            <Button
+              type="submit"
+              className="w-full text-center flex justify-center items-center"
+            >
+              Let&apos;s go
+            </Button>
+          </div>
+        </form>
+        <p className="font-normal text-center py-4 text-sm text-[var(--color-muted)]">
+          Don&apos;t have an account?{" "}
+          <span
+            className="underline font-semibold text-sm text-[var(--color-fg)] italic cursor-pointer"
+            onClick={() => router.push("/auth/signup")}
+          >
+            Sign up
+          </span>
+        </p>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import {
   GET_USERS_BY_ORGANIZATION_ID,
 } from "@/graphql/queries";
 import PostCard from "@/components/ui/PostCard";
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/Button";
 import { RiHeartAddLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import { Post, User } from "@/lib/types/types";
@@ -65,9 +65,9 @@ const UserPostPage = () => {
 
   return (
     <>
-      <div className="pb-5 flex flex-col md:flex-row justify-between">
+      <div className="pb-5 flex flex-col md:flex-row justify-between gap-4">
         <Button
-          className="mb-4 md:mb-0 p-2 rounded-md text-sm border bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-400 hover:to-indigo-400 text-white"
+          className="md:mb-0 text-sm"
           onClick={() => router.push("/add")}
         >
           <div className="flex items-center gap-2">
@@ -76,7 +76,7 @@ const UserPostPage = () => {
           </div>
         </Button>
         <div className="flex items-center gap-2">
-          <span className="text-gray-500 font-normal text-sm min-w-[55px]">
+          <span className="text-[var(--color-muted)] font-medium text-sm min-w-[55px]">
             Filter by
           </span>
           <div className="w-[150px]">
@@ -87,8 +87,8 @@ const UserPostPage = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-8">
-        <Card className="mt-2 px-6 mb-6 w-full h-full flex items-center gap-6 justify-center border-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-8">
+        <Card className="mt-2 px-6 mb-6 w-full h-full flex items-center gap-6 justify-center">
           <div>
             {" "}
             <img
@@ -99,25 +99,25 @@ const UserPostPage = () => {
             ></img>{" "}
           </div>
           <div className="flex gap-2 flex-col pr-6">
-            <h2 className="text-lg font-bold text-gray-800">
+            <h2 className="text-base font-semibold text-[var(--color-fg)]">
               Your MVP this {selectedFilter.toLocaleLowerCase()}
             </h2>
             <div className="p-0">
               {topMVP.length > 0 ? (
                 topMVP.map((name) => (
-                  <p className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+                  <p className="text-2xl font-semibold text-[var(--color-fg)]">
                     {capitalizeEachWord(name)}
                   </p>
                 ))
               ) : (
-                <p className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+                <p className="text-2xl font-semibold text-[var(--color-fg)]">
                   Unknown
                 </p>
               )}
             </div>
           </div>
         </Card>
-        <Card className="mt-2 px-6 mb-6 w-full h-full flex items-center gap-6 justify-center border-0">
+        <Card className="mt-2 px-6 mb-6 w-full h-full flex items-center gap-6 justify-center">
           <div>
             {" "}
             <img
@@ -128,15 +128,15 @@ const UserPostPage = () => {
             ></img>{" "}
           </div>
           <div className="flex gap-2 flex-col pr-6">
-            <h2 className="text-lg font-bold text-gray-800">
+            <h2 className="text-base font-semibold text-[var(--color-fg)]">
               Total kudos delivered
             </h2>
-            <p className="text-2xl font-extrabold bg-clip-text  text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+            <p className="text-2xl font-semibold text-[var(--color-fg)]">
               {data.postsBySpecificSender.length}
             </p>
           </div>
         </Card>
-        <Card className="mt-2 px-6 mb-6 w-full h-full flex items-center gap-6 justify-center border-0">
+        <Card className="mt-2 px-6 mb-6 w-full h-full flex items-center gap-6 justify-center">
           <div>
             {" "}
             <img
@@ -147,17 +147,17 @@ const UserPostPage = () => {
             ></img>{" "}
           </div>
           <div className="flex gap-2 flex-col pr-6">
-            <h2 className="text-lg font-bold text-gray-800 flex justify-start">
+            <h2 className="text-base font-semibold text-[var(--color-fg)] flex justify-start">
               My Team
             </h2>
-            <p className="text-2xl font-extrabold bg-clip-text  text-transparent bg-gradient-to-r from-purple-700 to-gray-800">
+            <p className="text-2xl font-semibold text-[var(--color-fg)]">
               {usersData?.usersByOrganizationId.length} people
             </p>
           </div>
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.postsBySpecificSender &&
           data.postsBySpecificSender.map((post: Post) => (
             <PostCard
@@ -178,8 +178,8 @@ const UserPostPage = () => {
 
       {data.postsBySpecificSender.length === 0 && (
         <div className="flex justify-center w-full py-10 h-56 my-auto item">
-          <p className="font-semibold text-gray-400 flex justify-center items-center">
-            It's empty in here, let's start posting!
+          <p className="font-semibold text-[var(--color-muted)] flex justify-center items-center">
+            It&apos;s empty in here, let&apos;s start posting!
           </p>
         </div>
       )}

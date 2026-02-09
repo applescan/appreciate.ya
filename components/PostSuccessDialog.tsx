@@ -22,15 +22,13 @@ const PostSuccessDialog: React.FC<PostSuccessDialogProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white">
+      <DialogContent className="bg-white/95">
         <DialogHeader>
-          <DialogTitle>🌟 Kudos Sent Successfully! 🌟</DialogTitle>
+          <DialogTitle>Kudos sent successfully</DialogTitle>
         </DialogHeader>
-        <div>
-          Your message of appreciation has been delivered!
-          <br></br>
-          Thanks for taking the time to recognize your teammate's hard work and
-          dedication.
+        <div className="text-sm text-[var(--color-muted)]">
+          Your appreciation message is on its way. Thanks for recognizing your
+          teammate&apos;s impact.
         </div>
         <div className="flex items-center justify-center">
           <Image
@@ -40,10 +38,12 @@ const PostSuccessDialog: React.FC<PostSuccessDialogProps> = ({
             height={200}
           ></Image>
         </div>
-        <div>Remember, a little kudos goes a long way!</div>
+        <div className="text-sm text-[var(--color-muted)]">
+          A little gratitude goes a long way.
+        </div>
         <div className="flex justify-end">
           <Button
-            className="w-1/4 flex justify-center"
+            className="flex justify-center"
             variant="default"
             onClick={() => router.push("/dashboard")}
           >

@@ -37,8 +37,8 @@ const AdminOrgsPage: React.FC = () => {
   if (error) return <ErrorPage />;
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="flex justify-center md:justify-end  gap-2 pb-4">
+    <div className="w-full">
+      <div className="flex justify-center md:justify-end gap-2 pb-6">
         <CreateOrganizationDialog
           isOpen={isCreateDialogOpen}
           onOpenChange={setIsCreateDialogOpen}
@@ -46,7 +46,7 @@ const AdminOrgsPage: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {data?.organizations.map((organization) => (
           <OrganizationCard
             key={organization.id}

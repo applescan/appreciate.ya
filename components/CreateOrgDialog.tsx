@@ -118,7 +118,7 @@ const CreateOrganizationDialog: React.FC<CreateOrganizationDialogProps> = ({
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogTrigger>
-        <div className="p-2 rounded-md text-sm border bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-400 hover:to-indigo-400 text-white">
+        <div className="rounded-full bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-2)] px-4 py-2 text-sm font-semibold text-white shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition">
           <div className="flex items-center gap-2">
             <BiSolidMessageSquareAdd /> Create new organisation
           </div>
@@ -126,19 +126,21 @@ const CreateOrganizationDialog: React.FC<CreateOrganizationDialogProps> = ({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New User</DialogTitle>
+          <DialogTitle>Create New Organisation</DialogTitle>
           <DialogDescription>
             <form onSubmit={handleSubmit}>
               {fields.map((field) => (
                 <div key={field.id} className="mt-4">
-                  <label htmlFor={field.id}>{field.label}</label>
+                  <label htmlFor={field.id} className="text-sm font-semibold">
+                    {field.label}
+                  </label>
                   {field.id !== "country" ? (
                     <Input
                       type="text"
                       id={field.id}
                       name={field.id}
                       placeholder="Type.."
-                      className="w-full p-2 mt-2 border rounded"
+                      className="mt-2 w-full"
                       value={orgData[field.id]}
                       onChange={handleChange}
                       required
@@ -171,7 +173,7 @@ const CreateOrganizationDialog: React.FC<CreateOrganizationDialogProps> = ({
                 <Button onClick={() => onOpenChange(false)} variant={"outline"}>
                   Cancel
                 </Button>
-                <Button type="submit">Create User</Button>
+                <Button type="submit">Create Organisation</Button>
               </div>
             </form>
           </DialogDescription>

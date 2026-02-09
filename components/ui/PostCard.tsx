@@ -148,7 +148,7 @@ export default function PostCard({
   };
 
   return (
-    <div className="flex flex-col p-6 space-y-2 overflow-hidden rounded-lg shadow-xl bg-gray-100/30 text-gray-900">
+    <div className="surface-card flex flex-col space-y-4 overflow-hidden rounded-3xl p-6 text-[var(--color-fg)]">
       <div className="flex space-x-4 items-center">
         <Avatar className="w-12 h-12">
           <AvatarImage src={ authorImage } />
@@ -160,7 +160,7 @@ export default function PostCard({
           <span className="text-sm font-semibold">
             { capitalizeEachWord(authorName) }
           </span>
-          <span className="text-xs text-gray-600 flex gap-0.5 items-center">
+          <span className="text-xs text-[var(--color-muted)] flex gap-1 items-center">
             <CiClock2 className="h-3 w-3" />
             { postTime }
           </span>
@@ -172,17 +172,17 @@ export default function PostCard({
           alt={ recipient }
           height={ 100 }
           width={ 200 }
-          className="object-cover w-full mb-4 bg-gray-500"
+          className="object-cover w-full mb-4 rounded-2xl bg-slate-200"
         />
-        <span className="text-lg font-bold text-gray-800">
+        <span className="text-lg font-semibold text-[var(--color-fg)]">
           { " " }
           To: { capitalizeEachWord(recipient) }
         </span>
-        <p className="text-sm text-gray-800 text-medium pt-2 pb-4">{ content }</p>
+        <p className="text-sm text-[var(--color-muted)] pt-2 pb-4">{ content }</p>
       </div>
       { comment && (
         <div
-          className="text-gray-500 hover:text-pink-700 flex gap-2 pt-4 items-center border-t-2 justify-end underline underline-offset-2 decoration-1 cursor-pointer"
+          className="text-[var(--color-muted)] hover:text-[var(--color-fg)] flex gap-2 pt-4 items-center border-t border-[var(--color-border)] justify-end underline underline-offset-2 decoration-1 cursor-pointer"
           onClick={ () => router.push(`/post/${postId}`) }
         >
           <FaRegCommentDots />
@@ -192,7 +192,7 @@ export default function PostCard({
         </div>
       ) }
       <div
-        className={ `${deletePost ? "flex items-center justify-between border-t-2 pt-6" : "hidden"}` }
+        className={ `${deletePost ? "flex items-center justify-between border-t border-[var(--color-border)] pt-6" : "hidden"}` }
       >
         <Button
           variant={ "outline" }
@@ -230,10 +230,10 @@ export default function PostCard({
                 type="text"
                 value={ newCommentContent }
                 onChange={ (e) => setNewCommentContent(e.target.value) }
-                className="w-full border-gray-200"
+                className="w-full"
                 placeholder="Write a comment..."
               />
-              <div className="text-pink-600" onClick={ handleAddComment }>
+              <div className="text-[var(--color-accent)]" onClick={ handleAddComment }>
                 <IoSend className="h-6 w-6" />
               </div>
             </>
@@ -253,8 +253,8 @@ export default function PostCard({
 
                 {/* Conditional rendering for editing mode */ }
                 { editingCommentId === Number(comment.id) ? (
-                  <div className="w-full  border-gray-200 bg-pink-50/30 rounded-xl py-2 px-4">
-                    <p className="text-gray-800 font-semibold text-sm">
+                  <div className="w-full border border-[var(--color-border)] bg-white/90 rounded-2xl py-2 px-4">
+                    <p className="text-[var(--color-fg)] font-semibold text-sm">
                       { comment.author.name }
                     </p>
                     <Input
@@ -265,11 +265,11 @@ export default function PostCard({
                     />
                   </div>
                 ) : (
-                  <div className="py-2 px-4 w-full bg-pink-50/30 rounded-xl">
-                    <p className="text-gray-800 font-semibold text-sm">
+                  <div className="py-2 px-4 w-full bg-white/80 rounded-2xl border border-[var(--color-border)]">
+                    <p className="text-[var(--color-fg)] font-semibold text-sm">
                       { comment.author.name }
                     </p>
-                    <p className="text-sm text-gray-500 text-medium">
+                    <p className="text-sm text-[var(--color-muted)]">
                       { comment.content }
                     </p>
                   </div>
@@ -280,32 +280,32 @@ export default function PostCard({
               { Number(comment.author.id) === currentUserId &&
                 editingCommentId !== Number(comment.id) && (
                   <div className="flex gap-2 justify-end pt-2">
-                    <div
-                      className="text-xs text-gray-600 py-2 cursor-pointer"
-                      onClick={ () => startEditing(comment) }
-                    >
-                      Edit
-                    </div>
-                    <div
-                      className="text-xs text-gray-600 py-2 cursor-pointer"
-                      onClick={ () => initiateDeleteComment(Number(comment.id)) }
-                    >
-                      Delete
-                    </div>
+                  <div
+                    className="text-xs text-[var(--color-muted)] py-2 cursor-pointer"
+                    onClick={ () => startEditing(comment) }
+                  >
+                    Edit
                   </div>
-                ) }
+                  <div
+                    className="text-xs text-[var(--color-muted)] py-2 cursor-pointer"
+                    onClick={ () => initiateDeleteComment(Number(comment.id)) }
+                  >
+                    Delete
+                  </div>
+                </div>
+              ) }
 
               {/* Save and Cancel buttons for editing mode */ }
               { editingCommentId === Number(comment.id) && (
                 <div className="flex gap-2 justify-end pt-2 items-center">
                   <div
-                    className="text-xs text-gray-600 py-2 cursor-pointer"
+                    className="text-xs text-[var(--color-muted)] py-2 cursor-pointer"
                     onClick={ () => setEditingCommentId(null) }
                   >
                     Cancel
                   </div>
                   <Button variant={ "ghost" } onClick={ handleEditComment }>
-                    <IoSend className="h-6 w-6 text-pink-600" />
+                    <IoSend className="h-6 w-6 text-[var(--color-accent)]" />
                   </Button>
                 </div>
               ) }

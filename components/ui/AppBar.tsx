@@ -27,12 +27,12 @@ const AppBar = () => {
 
   return (
     <>
-      <header className="bg-white shadow-md">
+      <header className={`sticky top-0 ${mobileMenuOpen ? "z-30" : "z-50"}`}>
         <nav
-          className="flex items-center justify-between py-6 px-6 lg:px-16"
+          className="glass-panel mx-4 mt-4 flex items-center justify-between rounded-full px-6 py-4 lg:mx-8 lg:px-10"
           aria-label="Global"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
             {status === Status.AUTHENTICATED ? (
               <div
                 onClick={() => router.push("/dashboard")}
@@ -40,8 +40,8 @@ const AppBar = () => {
               >
                 <Image
                   src="/logo.png"
-                  width={160}
-                  height={100}
+                  width={130}
+                  height={80}
                   alt="Appreciate ya logo"
                 />
               </div>
@@ -49,28 +49,31 @@ const AppBar = () => {
               <div onClick={() => router.push("/")} className="cursor-pointer">
                 <Image
                   src="/logo.png"
-                  width={160}
-                  height={100}
+                  width={130}
+                  height={80}
                   alt="Appreciate ya logo"
                 />
               </div>
             )}
+            <span className="hidden text-sm font-semibold tracking-wide text-[var(--color-muted)] lg:inline">
+              Celebrate wins, every day.
+            </span>
           </div>
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:text-gray-900 transition"
+              className="-m-2.5 inline-flex items-center justify-center rounded-full p-2.5 text-[var(--color-fg)] hover:bg-white/70 transition"
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
               <FaBars className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <Popover.Group className="hidden lg:flex lg:gap-x-12 items-center">
+          <Popover.Group className="hidden lg:flex lg:gap-x-3 items-center">
             {status === Status.AUTHENTICATED && (
               <div
                 onClick={() => router.push("/dashboard")}
-                className="cursor-pointer px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-md transition"
+                className="cursor-pointer rounded-full px-4 py-2 text-sm font-semibold text-[var(--color-fg)] hover:bg-white/70 transition"
               >
                 Dashboard
               </div>
@@ -79,7 +82,7 @@ const AppBar = () => {
               status === Status.AUTHENTICATED && (
                 <div
                   onClick={() => router.push("/admin/users")}
-                  className="cursor-pointer px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-md transition"
+                  className="cursor-pointer rounded-full px-4 py-2 text-sm font-semibold text-[var(--color-fg)] hover:bg-white/70 transition"
                 >
                   User Management
                 </div>
@@ -87,7 +90,7 @@ const AppBar = () => {
             {status === Status.AUTHENTICATED && (
               <div
                 onClick={() => router.push("/mykudos/received")}
-                className="cursor-pointer px-4 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-md transition"
+                className="cursor-pointer rounded-full px-4 py-2 text-sm font-semibold text-[var(--color-fg)] hover:bg-white/70 transition"
               >
                 My Kudos
               </div>
@@ -102,12 +105,12 @@ const AppBar = () => {
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
-          <div className="fixed inset-0 z-10 bg-black/30" />
-          <Dialog.Panel className="fixed inset-y-0 right-0 z-20 w-3/4 bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-xl rounded-l-xl">
+          <div className="fixed inset-0 z-[50] bg-black/30" />
+          <Dialog.Panel className="fixed inset-y-0 right-0 z-[60] w-3/4 bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-xl rounded-l-2xl">
             <div className="flex items-center justify-end">
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:text-gray-900"
+                className="-m-2.5 rounded-full p-2.5 text-[var(--color-fg)] hover:bg-gray-100"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
@@ -119,7 +122,7 @@ const AppBar = () => {
                 {status === Status.AUTHENTICATED && (
                   <div className="flex flex-col gap-2 cursor-pointer">
                     <button
-                      className="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-md"
+                      className="flex items-center gap-3 rounded-full p-2 hover:bg-gray-100"
                       onClick={() => router.push("/profile")}
                     >
                       <Avatar>
@@ -130,7 +133,7 @@ const AppBar = () => {
                             : "NA"}
                         </AvatarFallback>
                       </Avatar>
-                      <p className="text-gray-800 font-semibold">
+                      <p className="text-[var(--color-fg)] font-semibold">
                         {capitalizeEachWord(sessionData?.user.name)}
                       </p>
                     </button>
@@ -143,7 +146,7 @@ const AppBar = () => {
                 {status === Status.AUTHENTICATED && (
                   <p
                     onClick={() => router.push("/dashboard")}
-                    className="cursor-pointer block rounded-lg px-3 py-2 text-base font-normal leading-7 text-gray-900 hover:bg-gray-50"
+                    className="cursor-pointer block rounded-full px-3 py-2 text-base font-normal leading-7 text-[var(--color-fg)] hover:bg-gray-50"
                   >
                     Dashboard
                   </p>
@@ -154,7 +157,7 @@ const AppBar = () => {
                       onClick={() => router.push("/admin/users")}
                       className="cursor-pointer"
                     >
-                      <p className="block rounded-lg px-3 py-2 text-base font-normal leading-7 text-gray-900 hover:bg-gray-50">
+                      <p className="block rounded-full px-3 py-2 text-base font-normal leading-7 text-[var(--color-fg)] hover:bg-gray-50">
                         User Management
                       </p>
                     </div>
@@ -164,7 +167,7 @@ const AppBar = () => {
                     onClick={() => router.push("/mykudos/received")}
                     className="cursor-pointer"
                   >
-                    <p className="block rounded-lg px-3 py-2 text-base font-normal leading-7 text-gray-900 hover:bg-gray-50">
+                    <p className="block rounded-full px-3 py-2 text-base font-normal leading-7 text-[var(--color-fg)] hover:bg-gray-50">
                       My Kudos
                     </p>
                   </div>

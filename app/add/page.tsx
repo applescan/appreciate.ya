@@ -34,13 +34,13 @@ export default function page() {
 
   return (
     <div className="my-4">
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-6">
         {imageOptions.map((image, index) => (
           <img
             key={index}
             src={image}
             alt={`Card ${index + 1}`}
-            className="w-full cursor-pointer rounded-2xl border-8 border-transparent"
+            className="w-full cursor-pointer rounded-3xl border border-transparent shadow-md transition-all hover:-translate-y-1 hover:shadow-xl hover:border-[var(--color-border)]"
             onClick={() => openDialog(image)}
           />
         ))}

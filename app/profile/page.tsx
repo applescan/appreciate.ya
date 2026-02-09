@@ -231,8 +231,8 @@ export default function Page() {
   return (
     <div>
       <main className="flex flex-col gap-8 mb-10">
-        <div className="border border-gray-200 rounded-lg p-4 sm:p-10">
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:justify-between">
+        <div className="surface-card rounded-3xl p-6 sm:p-10">
+          <div className="flex flex-col sm:flex-row items-center gap-6 sm:justify-between">
             {/* User avatar and info */}
             <div className="flex items-center gap-2 md:gap-10">
               <Avatar className="h-28 w-28 md:w-36 md:h-36">
@@ -242,10 +242,10 @@ export default function Page() {
                 </AvatarFallback>
               </Avatar>
               <div>
-                <p className="text-2xl font-extrabold text-gray-900">
+                <p className="text-2xl font-semibold text-[var(--color-fg)]">
                   {capitalizeEachWord(currentUser.name)}
                 </p>
-                <p className="text-base	text-gray-500">{`${capitalizeEachWord(
+                <p className="text-sm text-[var(--color-muted)]">{`${capitalizeEachWord(
                   currentUser.role
                 )} @${currentUser.organization.name}`}</p>
               </div>
@@ -280,10 +280,14 @@ export default function Page() {
         </div>
 
         {/* Profile Details Form */}
-        <div className="border border-gray-200 rounded-lg px-10 py-4">
+        <div className="surface-card rounded-3xl px-8 py-6">
           <div className="py-4">
-            <p className="font-bold text-xl">Personal Information</p>
-            <p className="text-sm">Update your personal information</p>
+            <p className="text-lg font-semibold text-[var(--color-fg)]">
+              Personal Information
+            </p>
+            <p className="text-sm text-[var(--color-muted)]">
+              Update your personal information
+            </p>
           </div>
           <form
             onSubmit={(e) => {
@@ -291,15 +295,17 @@ export default function Page() {
               handleEditUser();
             }}
           >
-            <div className="mt-4 flex gap-4 mb-6 w-full">
+            <div className="mt-4 flex flex-col gap-4 mb-6 w-full md:flex-row">
               <div className="flex-1">
-                <label htmlFor="editName">Name</label>
+                <label htmlFor="editName" className="text-sm font-semibold">
+                  Name
+                </label>
                 <Input
                   type="text"
                   id="editName"
                   name="name"
                   placeholder="Type.."
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={editUserData.name}
                   onChange={(event) => {
                     const { name, value } = event.target;
@@ -308,13 +314,15 @@ export default function Page() {
                 />
               </div>
               <div className="flex-1">
-                <label htmlFor="editEmail">Email</label>
+                <label htmlFor="editEmail" className="text-sm font-semibold">
+                  Email
+                </label>
                 <Input
                   type="email"
                   id="editEmail"
                   name="email"
                   placeholder="Type.."
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={editUserData.email}
                   onChange={(event) => {
                     const { name, value } = event.target;
@@ -325,21 +333,28 @@ export default function Page() {
             </div>
 
             <div className="py-4">
-              <p className="font-bold text-xl">Change Password</p>
-              <p className="text-sm">
+              <p className="text-lg font-semibold text-[var(--color-fg)]">
+                Change Password
+              </p>
+              <p className="text-sm text-[var(--color-muted)]">
                 Your new password must be different from your previous password
               </p>
             </div>
 
             {/* Current Password field */}
             <div className="mt-1  mr-4">
-              <label htmlFor="currentPassword">Current Password</label>
+              <label
+                htmlFor="currentPassword"
+                className="text-sm font-semibold"
+              >
+                Current Password
+              </label>
               <Input
                 type="password"
                 id="currentPassword"
                 name="currentPassword"
                 placeholder="Enter current password"
-                className="w-1/2 p-2 mt-2 border rounded"
+                className="mt-2 w-full md:w-1/2"
                 value={editUserData.currentPassword}
                 onChange={(event) => {
                   const { name, value } = event.target;
@@ -348,15 +363,17 @@ export default function Page() {
               />
             </div>
 
-            <div className="mt-4 flex gap-4 w-full items-center">
+            <div className="mt-4 flex flex-col gap-4 w-full items-center md:flex-row">
               <div className="flex-1">
-                <label htmlFor="newPassword">New Password</label>
+                <label htmlFor="newPassword" className="text-sm font-semibold">
+                  New Password
+                </label>
                 <Input
                   type="password"
                   id="newPassword"
                   name="newPassword"
                   placeholder="Enter your new password"
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={editUserData.newPassword}
                   onChange={(event) => {
                     const { name, value } = event.target;
@@ -365,13 +382,18 @@ export default function Page() {
                 />
               </div>
               <div className="flex-1">
-                <label htmlFor="confirmPassword">Confirm New Password</label>
+                <label
+                  htmlFor="confirmPassword"
+                  className="text-sm font-semibold"
+                >
+                  Confirm New Password
+                </label>
                 <Input
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
                   placeholder="Confirm your new password"
-                  className="w-full p-2 mt-2 border rounded"
+                  className="mt-2 w-full"
                   value={editUserData.confirmPassword}
                   onChange={(event) => {
                     const { name, value } = event.target;
@@ -382,7 +404,7 @@ export default function Page() {
             </div>
 
             {errorMessage && (
-              <p className="text-red-500 mt-4">• {errorMessage}</p>
+              <p className="text-red-500 mt-4 text-sm">• {errorMessage}</p>
             )}
 
             {/* Submit and Cancel Buttons */}

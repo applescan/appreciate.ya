@@ -11,7 +11,7 @@ const TextBox = React.forwardRef<HTMLInputElement, IProps>(
       <div className={className + " relative"}>
         {labelText && (
           <label
-            className="block text-gray-600  mb-2 text-xs lg:text-sm xl:text-base"
+            className="mb-2 block text-xs font-semibold text-[var(--color-muted)] lg:text-sm xl:text-base"
             htmlFor="txt"
           >
             {labelText}
@@ -21,9 +21,9 @@ const TextBox = React.forwardRef<HTMLInputElement, IProps>(
           <input
             id="txt"
             autoComplete="off"
-            className={`border border-slate-400 disabled:border-slate-100 w-full block outline-none py-2 px-1 transition-all text-xs lg:text-sm xl:text-base  bg-slate-50 focus:shadow focus:shadow-blue-500
-              ${error && "border-red-500 border  animate-shake"} ${
-                children ? "rounded-r-md" : "rounded-md"
+            className={`w-full rounded-2xl border border-[var(--color-border)] bg-white/90 px-3 py-2 text-xs text-[var(--color-fg)] outline-none transition-all focus:ring-2 focus:ring-[var(--color-ring)] lg:text-sm xl:text-base
+              ${error && "border-red-500 animate-shake"} ${
+                children ? "rounded-r-none" : "rounded-2xl"
               }`}
             {...props}
             ref={ref}
@@ -33,7 +33,9 @@ const TextBox = React.forwardRef<HTMLInputElement, IProps>(
           <div className="flex">{children}</div>
         </div>
         {error && (
-          <p className="text-red-600 text-right animate-shake">{error}</p>
+          <p className="text-red-600 text-right animate-shake text-xs">
+            {error}
+          </p>
         )}
       </div>
     );

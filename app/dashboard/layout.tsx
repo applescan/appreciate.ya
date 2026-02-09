@@ -22,10 +22,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="px-12 py-12 flex flex-col gap-6 justify-center">
-      <div>
-        <h2 className="font-extrabold flex justify-center text-3xl text-gray-900">
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 lg:px-10">
+      <div className="flex flex-col items-center gap-2 text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-muted)]">
           Dashboard
+        </p>
+        <h2 className="text-3xl font-semibold text-[var(--color-fg)] sm:text-4xl">
+          Your team&apos;s appreciation pulse
         </h2>
       </div>
 

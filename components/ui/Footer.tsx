@@ -30,30 +30,40 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="pt-10 bg-purple-50">
-      <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
-        <div className="space-y-6 w-full sm:text-center">
-          <Image
-            src="/logo.png"
-            width={160}
-            height={100}
-            alt="Appreciate ya logo"
-            className="w-32 sm:mx-auto"
-          />
-          <p className="text-sm w-full">
-            Boost Morale with a Click: Send a Token of Appreciation to a
-            Coworker Today!
-          </p>
+    <footer className="mt-24 border-t border-[var(--color-border)] bg-white/70">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 text-[var(--color-muted)] lg:px-10">
+        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="space-y-3">
+            <Image
+              src="/logo.png"
+              width={150}
+              height={90}
+              alt="Appreciate ya logo"
+              className="w-32"
+            />
+            <p className="max-w-md text-sm">
+              Boost morale with a click. Create a culture of recognition where
+              every teammate feels seen.
+            </p>
+          </div>
+          <div className="surface-card rounded-3xl px-5 py-4">
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-muted)]">
+              Celebrate daily
+            </p>
+            <p className="mt-2 text-lg font-semibold text-[var(--color-fg)]">
+              Appreciate wins in real time.
+            </p>
+          </div>
         </div>
-        <div className="mt-10 pb-10 pt-5 border-t items-center justify-between sm:flex">
-          <p className="flex flex-wrap items-center gap-4 mt-6 text-sm sm:mt-0 font-semibold">
-            © 2024 Felicia Fel. All rights reserved. 😶‍🌫️🥚
+        <div className="flex flex-col gap-6 border-t border-[var(--color-border)] pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-semibold text-[var(--color-fg)]">
+            © 2024 Felicia Fel. All rights reserved.
           </p>
-          <ul className="flex flex-wrap items-center gap-4 mt-6 text-xs sm:mt-0">
+          <ul className="flex flex-wrap items-center gap-4">
             {footerNavs.map((item) => (
               <li
                 key={item.id}
-                className="text-gray-800 hover:text-purple-500 duration-150"
+                className="text-[var(--color-muted)] hover:text-[var(--color-fg)] duration-150"
               >
                 <a href={item.href}>{item.name}</a>
               </li>

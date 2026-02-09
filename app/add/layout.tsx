@@ -23,17 +23,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }
 
   return (
-    <div className="px-14 pt-12 flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <div
-          className="font-extrabold flex text-3xl text-gray-900 gap-4 items-center cursor-pointer"
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 lg:px-10">
+      <div className="flex flex-col gap-3">
+        <button
+          className="flex items-center gap-3 text-sm font-semibold text-[var(--color-muted)] hover:text-[var(--color-fg)]"
           onClick={() => router.push("/dashboard")}
         >
-          <FaArrowLeft className="text-pink-500" /> Choose Your Perfect Gift! ✨
-        </div>
-        <p className="flex">
-          Choose your favorite card design. Don’t forget, you can add a personal
-          touch to your gift with a message!
+          <FaArrowLeft className="text-[var(--color-accent)]" /> Back to
+          dashboard
+        </button>
+        <h2 className="text-3xl font-semibold text-[var(--color-fg)]">
+          Choose a card that fits the moment
+        </h2>
+        <p className="max-w-2xl text-sm text-[var(--color-muted)]">
+          Pick a design, then add a message that feels thoughtful and genuine.
         </p>
       </div>
       <main>

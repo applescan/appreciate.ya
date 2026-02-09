@@ -118,13 +118,15 @@ const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> = ({
             }}
           >
             <div className="mt-4">
-              <label htmlFor="editName">Name</label>
+              <label htmlFor="editName" className="text-sm font-semibold">
+                Name
+              </label>
               <Input
                 type="text"
                 id="editName"
                 name="name"
                 placeholder="Type.."
-                className="w-full p-2 mt-2 border rounded"
+                className="mt-2 w-full"
                 value={editOrganizationData.name}
                 onChange={(event) => {
                   const { name, value } = event.target;
@@ -137,13 +139,15 @@ const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> = ({
             </div>
 
             <div className="mt-4">
-              <label htmlFor="editAddress">Address</label>
+              <label htmlFor="editAddress" className="text-sm font-semibold">
+                Address
+              </label>
               <Input
                 type="text"
                 id="editAddress"
                 name="address"
                 placeholder="Type.."
-                className="w-full p-2 mt-2 border rounded"
+                className="mt-2 w-full"
                 value={editOrganizationData.address}
                 onChange={(event) => {
                   const { name, value } = event.target;
@@ -156,7 +160,9 @@ const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> = ({
             </div>
 
             <div className="mt-4 flex-col">
-              <label htmlFor="editCountry">Country</label>
+              <label htmlFor="editCountry" className="text-sm font-semibold">
+                Country
+              </label>
               <Select
                 value={editOrganizationData.country}
                 onValueChange={(value) =>
@@ -182,13 +188,18 @@ const EditOrganizationDialog: React.FC<EditOrganizationDialogProps> = ({
             </div>
 
             <div className="mt-4">
-              <label htmlFor="editOrganizationType">Organisation Type</label>
+              <label
+                htmlFor="editOrganizationType"
+                className="text-sm font-semibold"
+              >
+                Organisation Type
+              </label>
               <Input
                 type="text"
                 id="editOrganizationType"
                 name="organizationType"
                 placeholder="Type.."
-                className="w-full p-2 mt-2 border rounded"
+                className="mt-2 w-full"
                 value={editOrganizationData.organizationType}
                 onChange={(event) => {
                   const { name, value } = event.target;

@@ -231,13 +231,13 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                 <img
                   src={ selectedImage }
                   alt="Selected"
-                  className="w-full rounded-lg"
+                  className="w-full rounded-2xl shadow-md"
                 />
               </div>
               <div className="mb-4">
                 <label
                   htmlFor="recipient"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-semibold text-[var(--color-fg)]"
                 >
                   Select Recipient:
                 </label>
@@ -277,7 +277,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
               <div className="mb-4">
                 <label
                   htmlFor="content"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-semibold text-[var(--color-fg)]"
                 >
                   Content:
                 </label>
@@ -285,7 +285,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                   id="content"
                   value={ content }
                   onChange={ (e) => setContent(e.target.value) }
-                  className="mt-1 block w-full py-2 px-3 border border-purple-800/30 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-2 block w-full rounded-2xl border border-[var(--color-border)] bg-white/90 px-3 py-2 text-sm text-[var(--color-fg)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)]"
                   placeholder="Give a shout-out, express thanks, or cheer on a teammate! Your kudos make a difference."
                 />
               </div>
@@ -299,7 +299,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                   >
                     <label
                       htmlFor="content"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-semibold text-[var(--color-fg)]"
                     >
                       Ask AI for a suggestion:
                     </label>
@@ -308,10 +308,10 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                         value={ aiChatInput }
                         onChange={ (e) => setAIChatInput(e.target.value) }
                         placeholder="Ask the AI something..."
-                        className="block w-full py-2 px-3 border border-purple-800/30 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="block w-full rounded-2xl border border-[var(--color-border)] bg-white/90 px-3 py-2 text-sm text-[var(--color-fg)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)]"
                       />
                       <div
-                        className="text-pink-600"
+                        className="text-[var(--color-accent)]"
                         onClick={ (e) => handleAIChatSubmit(e) }
                       >
                         <IoSend className="h-6 w-6" />
@@ -322,7 +322,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                     <div className="mt-4">
                       <label
                         htmlFor="aiResponse"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-semibold text-[var(--color-fg)]"
                       >
                         AI Response:
                       </label>
@@ -334,7 +334,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                           }
                           variant={ "ghost" }
                         >
-                          <p className="flex items-center gap-1 text-xs text-pink-600">
+                          <p className="flex items-center gap-1 text-xs text-[var(--color-accent)]">
                             { " " }
                             <MdCopyAll />
                             Copy

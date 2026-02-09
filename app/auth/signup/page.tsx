@@ -126,113 +126,101 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="relative flex h-full">
-      <div
-        className="w-1/2 bg-no-repeat bg-cover bg-center relative"
-        style={{ backgroundImage: `url('/bg-1.jpg')` }}
-      ></div>
-      <div
-        className="w-1/2 bg-no-repeat bg-cover bg-center relative"
-        style={{ backgroundImage: `url('/bg-2.jpg')` }}
-      ></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex flex-col items-center justify-center h-full w-[450px] mx-auto text-gray-600">
-          <div className="w-full bg-white rounded-xl shadow-xl p-8 space-y-2 md:space-y-2">
-            <h2 className="text-4xl font-extrabold text-center text-purple-900">
-              Sign-up
-            </h2>
-            {Object.keys(formErrors).length > 0 && (
-              <ul className="list-disc list-inside text-sm font-normal text-red-500 py-4">
-                {Object.entries(formErrors).map(([key, error]) => (
-                  <li key={key}>{error}</li>
-                ))}
-              </ul>
-            )}
-            <form
-              className="space-y-2 md:space-y-4"
-              onSubmit={handleSignUpSubmit}
-            >
-              <div>
-                <label htmlFor="name" className="text-sm font-medium">
-                  Name
-                </label>
-                <Input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Enter name..."
-                  className="w-full border rounded"
-                  value={signupData.name}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </label>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Enter email..."
-                  className="w-full border rounded"
-                  value={signupData.email.toLowerCase()}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="text-sm font-medium">
-                  Password
-                </label>
-                <Input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Enter password..."
-                  className="w-full border rounded"
-                  value={signupData.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="flex flex-col w-full">
-                <label htmlFor="orgId" className="text-sm font-medium">
-                  Organization
-                </label>
-                <Select name="orgId" onValueChange={handleOrgSelect}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select Organization" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      {data?.organizations.map((org: Organization) => (
-                        <SelectItem key={org.id} value={org.id.toString()}>
-                          {org.name}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="mt-6 flex w-full items-center gap-2">
-                <Button
-                  type="submit"
-                  className="w-full text-center flex justify-center items-center"
-                >
-                  Start appreciating!
-                </Button>
-              </div>
-            </form>
-            <p className="font-normal text-center py-4 text-sm text-purple-900">
-              Already have an account? Please{" "}
-              <span
-                className="underline font-bold text-sm text-purple-900 italic cursor-pointer"
-                onClick={() => signIn()}
-              >
-                sign in
-              </span>
-            </p>
+    <div className="mx-auto flex min-h-[80vh] max-w-6xl items-center justify-center px-6 py-12 lg:px-10">
+      <div className="glass-panel w-full max-w-xl rounded-[32px] p-8 shadow-2xl">
+        <h2 className="text-3xl font-semibold text-[var(--color-fg)]">
+          Create your account
+        </h2>
+        <p className="mt-2 text-sm text-[var(--color-muted)]">
+          Join your team and start sharing appreciation.
+        </p>
+        {Object.keys(formErrors).length > 0 && (
+          <ul className="list-disc list-inside text-sm font-normal text-red-500 py-4">
+            {Object.entries(formErrors).map(([key, error]) => (
+              <li key={key}>{error}</li>
+            ))}
+          </ul>
+        )}
+        <form className="mt-6 space-y-4" onSubmit={handleSignUpSubmit}>
+          <div>
+            <label htmlFor="name" className="text-sm font-semibold">
+              Name
+            </label>
+            <Input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter name..."
+              className="mt-2 w-full"
+              value={signupData.name}
+              onChange={handleInputChange}
+            />
           </div>
-        </div>
+          <div>
+            <label htmlFor="email" className="text-sm font-semibold">
+              Email
+            </label>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter email..."
+              className="mt-2 w-full"
+              value={signupData.email.toLowerCase()}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="text-sm font-semibold">
+              Password
+            </label>
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter password..."
+              className="mt-2 w-full"
+              value={signupData.password}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="flex flex-col w-full">
+            <label htmlFor="orgId" className="text-sm font-semibold">
+              Organization
+            </label>
+            <Select name="orgId" onValueChange={handleOrgSelect}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select Organization" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {data?.organizations.map((org: Organization) => (
+                    <SelectItem key={org.id} value={org.id.toString()}>
+                      {org.name}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="mt-6 flex w-full items-center gap-2">
+            <Button
+              type="submit"
+              className="w-full text-center flex justify-center items-center"
+            >
+              Start appreciating
+            </Button>
+          </div>
+        </form>
+        <p className="font-normal text-center py-4 text-sm text-[var(--color-muted)]">
+          Already have an account?{" "}
+          <span
+            className="underline font-semibold text-sm text-[var(--color-fg)] italic cursor-pointer"
+            onClick={() => signIn()}
+          >
+            Sign in
+          </span>
+        </p>
       </div>
     </div>
   );

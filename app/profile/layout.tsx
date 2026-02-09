@@ -11,12 +11,17 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="px-12 pt-12 flex flex-col gap-4 justify-center">
-      <div className="flex flex-col gap-2">
-        <h2 className="font-extrabold flex text-3xl text-gray-900 justify-center">
-          My Profile
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 lg:px-10">
+      <div className="flex flex-col items-center gap-2 text-center">
+        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-muted)]">
+          Profile
+        </p>
+        <h2 className="text-3xl font-semibold text-[var(--color-fg)] sm:text-4xl">
+          Keep your details up to date
         </h2>
-        <p className="flex justify-center">Update your account information</p>
+        <p className="text-sm text-[var(--color-muted)]">
+          Update your account information and preferences.
+        </p>
       </div>
 
       <main>{children}</main>

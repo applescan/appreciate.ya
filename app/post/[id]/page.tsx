@@ -27,8 +27,8 @@ export default function Page() {
   const post = data?.postById;
 
   return (
-    <div className="w-full h-full flex items-center justify-center pb-10">
-      <div className="md:w-1/3 w-full flex my-auto">
+    <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-6 py-12 lg:px-10">
+      <div className="w-full max-w-xl flex my-auto">
         {post ? (
           <PostCard
             postId={post.id}

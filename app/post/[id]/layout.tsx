@@ -23,22 +23,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   }
 
   return (
-    <div
-      style={{
-        backgroundImage: `url("/post.jpg")`,
-        height: "100vh",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
-      className="px-14 pt-12 flex flex-col gap-6"
-    >
+    <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-12 lg:px-10">
       <div className="flex flex-col gap-2">
-        <div
-          className="font-extrabold flex text-3xl text-gray-900 gap-4 items-center cursor-pointer"
+        <button
+          className="flex items-center gap-3 text-sm font-semibold text-[var(--color-muted)] hover:text-[var(--color-fg)]"
           onClick={() => router.push("/dashboard")}
         >
-          <FaArrowLeft className="text-pink-500" /> Back
-        </div>
+          <FaArrowLeft className="text-[var(--color-accent)]" /> Back to
+          dashboard
+        </button>
       </div>
       <main>
         {React.cloneElement(children as React.ReactElement, { sessionData })}
