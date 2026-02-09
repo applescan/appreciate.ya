@@ -9,7 +9,7 @@ interface Props {
 
 const Providers = ({ children }: Props) => {
   const client = new ApolloClient({
-    uri: "http://localhost:3000/api/graphql",
+    uri: "https://appreciate-ya.vercel.app/api/graphql",
     cache: new InMemoryCache(),
   });
 
