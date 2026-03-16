@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { signIn } from "next-auth/react";
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginPage: React.FC = () => {
   const [loginData, setLoginData] = useState<{
@@ -12,6 +12,8 @@ const LoginPage: React.FC = () => {
   }>({ username: "", password: "" });
   const [formErrors, setFormErrors] = useState<string[]>([]);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams?.get("callbackUrl") || "/";
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -34,13 +36,13 @@ const LoginPage: React.FC = () => {
       username: loginData.username,
       password: loginData.password,
       redirect: false,
-      callbackUrl: "/",
+      callbackUrl,
     });
 
     if (result?.error) {
       setFormErrors(["Invalid email or password"]);
     } else {
-      window.location.href = "/";
+      window.location.href = result?.url || callbackUrl;
     }
   };
 
