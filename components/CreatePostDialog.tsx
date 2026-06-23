@@ -80,6 +80,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
   const [isAIChatActive, setIsAIChatActive] = useState(false);
   const [aiChatInput, setAIChatInput] = useState("");
   const [aiChatResponse, setAIChatResponse] = useState("");
+  const [isAIChatLoading, setIsAIChatLoading] = useState(false);
 
   const handleRecipientSelect = (
     userId: string,
@@ -140,46 +141,52 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
     }
   };
 
-  const handleAIChatSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleAIChatSubmit = async () => {
     if (!aiChatInput.trim()) {
       alert("Please enter a question for the AI.");
       return;
     }
 
-    await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        messages: [
-          { role: "user", content: aiChatInput + "in 3 sentences or less" },
-        ],
-      }),
-    })
-      .then(async (response) => {
-        if (!response.body) {
-          throw new Error("Failed to get a response body");
-        }
-        const reader = response.body.getReader();
-        setAIChatResponse("");
+    try {
+      setIsAIChatLoading(true);
+      setAIChatResponse("");
 
-        // Process the stream
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) {
-            break; // Exit the loop when the stream is finished
-          }
-
-          // Decode the stream chunk to a string and update the response state
-          var currentChunk = new TextDecoder().decode(value);
-          setAIChatResponse((prev) => prev + currentChunk);
-        }
-      })
-      .catch((error) => {
-        console.error("Failed to fetch AI chat response:", error);
-        setAIChatResponse("Failed to communicate with AI.");
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "user",
+              content: `${aiChatInput} In 3 sentences or less.`,
+            },
+          ],
+        }),
       });
-    setAIChatInput("");
+
+      if (!response.ok) {
+        const errorPayload = await response.json().catch(() => null);
+        setAIChatResponse(
+          errorPayload?.error || "Failed to communicate with AI.",
+        );
+        return;
+      }
+
+      const suggestion = await response.text();
+
+      if (!suggestion.trim()) {
+        setAIChatResponse("AI did not return a suggestion.");
+        return;
+      }
+
+      setAIChatResponse(suggestion);
+      setAIChatInput("");
+    } catch (error) {
+      console.error("Failed to fetch AI chat response:", error);
+      setAIChatResponse("Failed to communicate with AI.");
+    } finally {
+      setIsAIChatLoading(false);
+    }
   };
 
   const toggleAIChat = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -293,10 +300,7 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
               {/* AI Chat Interface */ }
               { isAIChatActive && (
                 <div className="my-4">
-                  <form
-                    onSubmit={ handleAIChatSubmit }
-                    className="flex flex-col gap-2"
-                  >
+                  <div className="flex flex-col gap-2">
                     <label
                       htmlFor="content"
                       className="block text-sm font-semibold text-[var(--color-fg)]"
@@ -310,15 +314,17 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                         placeholder="Ask the AI something..."
                         className="block w-full rounded-2xl border border-[var(--color-border)] bg-white/90 px-3 py-2 text-sm text-[var(--color-fg)] shadow-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)]"
                       />
-                      <div
+                      <button
+                        type="button"
                         className="text-[var(--color-accent)]"
-                        onClick={ (e) => handleAIChatSubmit(e) }
+                        onClick={ handleAIChatSubmit }
+                        disabled={ isAIChatLoading }
                       >
                         <IoSend className="h-6 w-6" />
-                      </div>
+                      </button>
                     </div>
-                  </form>
-                  { aiChatResponse && (
+                  </div>
+                  { (isAIChatLoading || aiChatResponse) && (
                     <div className="mt-4">
                       <label
                         htmlFor="aiResponse"
@@ -327,12 +333,14 @@ const CreatePostDialog: React.FC<CreatePostDialogProps> = ({
                         AI Response:
                       </label>
                       <div className="flex items-center space-x-2 mt-1 justify-between text-sm">
-                        { aiChatResponse }
+                        { isAIChatLoading ? "Thinking..." : aiChatResponse }
                         <Button
+                          type="button"
                           onClick={ (e) =>
                             handleCopyToClipboard(aiChatResponse, e)
                           }
                           variant={ "ghost" }
+                          disabled={ isAIChatLoading || !aiChatResponse }
                         >
                           <p className="flex items-center gap-1 text-xs text-[var(--color-accent)]">
                             { " " }

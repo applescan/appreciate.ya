@@ -27,13 +27,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-muted)]">
           Dashboard
         </p>
-        <h2 className="text-3xl font-semibold text-[var(--color-fg)] sm:text-4xl">
-          Your team&apos;s appreciation pulse
-        </h2>
       </div>
 
       <main>
-        {React.cloneElement(children as React.ReactElement, { sessionData })}
+        { React.cloneElement(children as React.ReactElement, { sessionData }) }
       </main>
     </div>
   );
